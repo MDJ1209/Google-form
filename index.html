@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Form Clone</title>
+    <link rel="stylesheet" href="gf.css">
+</head>
+<body>
+    <h2 style="text-align: center; color: rgb(10, 10, 10); font-family: Arial, Helvetica, sans-serif;">Google Form Clone (by MDJ)</h2>
+    <div class="container">
+        <form id="form">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+            
+            <label for="message">Message for me</label>
+            <textarea name="message" id="message" cols="30" rows="10" placeholder="Enter your message" required></textarea>
+            
+            <label for="gender">Gender</label>
+            <select name="gender" id="gender" required>
+                <option value="">Select your gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">LGTV</option>
+            </select>
+            <span id="gender-emoji" class="emoji-text"></span>
+            
+            <label for="what-you-like">What you like about me</label>
+            <select name="what-you-like" id="what-you-like" required>
+                <option value="">Select an option</option>
+                <option value="smart">Smart</option>
+                <option value="funny">Funny</option>
+                <option value="cute">Cute</option>
+                <option value="kind">Kind</option>
+                <option value="rude">Rude</option>
+            </select>
+            <span id="like-emoji" class="emoji-text"></span>
+            
+            <label for="activities">Free time activities</label>
+            <select name="activities" id="activities" required>
+                <option value="">Select an activity</option>
+                <option value="Gaming">Gaming</option>
+                <option value="Sleeping">Sleeping</option>
+                <option value="Studying">Studying</option>
+                <option value="Eating brains">Eating brains</option>
+                <option value="Singing">Go to bathroom and sing</option>
+            </select>
+            <span id="activities-emoji" class="emoji-text"></span>
+            
+            <button type="button" class="submit-button" onclick="handleSubmit()">Submit</button>
+        </form>
+        <div id="summary-message" class="summary-text"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const genderSelect = document.getElementById('gender');
+            const likeSelect = document.getElementById('what-you-like');
+            const activitiesSelect = document.getElementById('activities');
+            const genderEmoji = document.getElementById('gender-emoji');
+            const likeEmoji = document.getElementById('like-emoji');
+            const activitiesEmoji = document.getElementById('activities-emoji');
+            const summaryMessage = document.getElementById('summary-message');
+            const form = document.getElementById('form');
+
+            genderSelect.addEventListener('change', function() {
+                switch (this.value) {
+                    case 'male':
+                        genderEmoji.textContent = '👨Welcome here SIGMA';
+                        break;
+                    case 'female':
+                        genderEmoji.textContent = '👩Hello, SUPERWOMEN';
+                        break;
+                    case 'other':
+                        genderEmoji.textContent = '🌈Serious Treatment needed';
+                        break;
+                    default:
+                        genderEmoji.textContent = '⬆️Describe yourself';
+                }
+            });
+
+            likeSelect.addEventListener('change', function() {
+                switch (this.value) {
+                    case 'smart':
+                        likeEmoji.textContent = '🧠yeah i know i am smart';
+                        break;
+                    case 'funny':
+                        likeEmoji.textContent = '😂Thats my complete nature';
+                        break;
+                    case 'cute':
+                        likeEmoji.textContent = '😊I am born cute';
+                        break;
+                    case 'kind':
+                        likeEmoji.textContent = '❤️Kindness is my identity';
+                        break;
+                    case 'rude':
+                        likeEmoji.textContent = '😡Who told you to meet me when i am angry';
+                        break;
+                    default:
+                        likeEmoji.textContent = '⬆️select what you feel';
+                }
+            });
+
+            activitiesSelect.addEventListener('change', function() {
+                switch (this.value) {
+                    case 'Gaming':
+                        activitiesEmoji.textContent = '🎮Play to a limit, dude!';
+                        break;
+                    case 'Sleeping':
+                        activitiesEmoji.textContent = '😴2-3 hours are enough, dude!';
+                        break;
+                    case 'Studying':
+                        activitiesEmoji.textContent = '📚Focus on skills too!';
+                        break;
+                    case 'Eating brains':
+                        activitiesEmoji.textContent = '🧠You are lucky to have people around you!';
+                        break;
+                    case 'Singing':
+                        activitiesEmoji.textContent = '🎤Bring your talent out of the bathroom!';
+                        break;
+                    default:
+                        activitiesEmoji.textContent = '⬆️choose your choice';
+                }
+            });
+        });
+
+        function handleSubmit() {
+            const likeSelect = document.getElementById('what-you-like');
+            const activitiesSelect = document.getElementById('activities');
+            const summaryMessage = document.getElementById('summary-message');
+            const form = document.getElementById('form');
+
+            const likeValue = likeSelect.value;
+            const activitiesValue = activitiesSelect.value;
+            let summary = '';
+
+            if (likeValue) {
+                summary += `your friend didnt take much time to think They feel you are ${likeValue} and `;
+            }
+
+            if (activitiesValue) {
+                summary += `They prefer ${activitiesValue.toLowerCase()} in their free time I think spending time with MDJ should have been an option😊.`;
+            }
+
+            summaryMessage.textContent = summary;
+        }
+    </script>
+</body>
+</html>
